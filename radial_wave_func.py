@@ -83,21 +83,13 @@ import numpy as np
 a=c.physical_constants['Bohr radius'][0]
 
 def radial_wave_func(n,l,r):
-    print a
-    p = 2*l + 1
-    qmp = n - l - 1
+    p = 2.0*l + 1.0
+    qmp = n - l - 1.0
     L = assoc_laguerre(p,qmp)
-    Lx = np.float64(L((2*r)/(n*a)))
-    fac1 = np.float64(np.math.factorial(n - l - 1))
-    print fac1
+    Lx = np.float64(L((2.0*r)/(n*a)))
+    fac1 = np.float64(np.math.factorial(n - l - 1.0))
     fac2 = np.float64(np.math.factorial(n + l))
-    print fac2
-    exp = np.float64(np.exp(r/(n*a)))
-    print exp
-    sqrt = np.sqrt(((2 / (n * a))**3) * (fac1/((2*n)*((fac2)**3))))
-    print sqrt
-    radialSolution = (sqrt * (exp) * ((2 * r) / (n * a))**l * (Lx)) / a**(- 3/2)
-    print type(radialSolution)
+    exp = np.float64(np.exp(-(r/(n*a))))
+    sqrt = np.sqrt(((2.0 / (n * a))**3.0) * (fac1/((2.0*n)*((fac2)**3.0))))
+    radialSolution = (sqrt * (exp) * ((2.0 * r) / (n * a))**l * (Lx)) / a**(- 3.0/2.0)
     return np.round(radialSolution,5)
-    
-print radial_wave_func(1,0,a)
